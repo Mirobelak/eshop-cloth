@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import FormInput from "../form-input/FormInput"
 import { signInWithGooglePopup, SignInrWitEmalAndPassword } from '../../utils/firebase/firebase'
-import "./SignInForm.scss"
+import {SignUpContainer, Title, ButtonContainer} from "./SignInForm.styles"
 import Button, {BUTTON_TYPE_CLASSES} from '../button/button'
 
 const defaultFormFields = {
@@ -15,9 +15,6 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields)
     const {email, password} = formFields
 
-
-    console.log(formFields);
-
     const resetFormField = () => {
       setFormFields(defaultFormFields)
     }
@@ -30,7 +27,7 @@ const SignInForm = () => {
       event.preventDefault()
       
         try {
-          const {user} = await SignInrWitEmalAndPassword(email, password )
+          await SignInrWitEmalAndPassword(email, password )
           resetFormField()
         } catch(error) {
           switch(error.code) {
@@ -52,20 +49,20 @@ const SignInForm = () => {
 
     }
   return (
-    <div className='sign-up-container' >
+    <SignUpContainer >
       
-      <h2>Already have an account ? </h2>
+      <Title>Already have an account ? </Title>
     <span>SignUp with your email and password </span>
     <form onSubmit={handleSubmit}>
        
         <FormInput label="Email" required type="email" onChange={handleChange} name="email" value={email} />
         <FormInput label="Password" required type="password" onChange={handleChange} name="password" value={password} />
-        <div className='buttons-container' >
+        <ButtonContainer >
         <Button type='submit'>Sign In</Button>
         <Button type="button" buttonType={BUTTON_TYPE_CLASSES.google} onClick={SignInWithGoogle} >Google Sign In</Button>
-        </div>    
+        </ButtonContainer>    
     </form>
-    </div>
+    </SignUpContainer>
 
   )
 }
