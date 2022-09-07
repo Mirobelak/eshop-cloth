@@ -2,7 +2,7 @@ import React, { useState} from 'react'
 import FormInput from "../form-input/FormInput"
 import { signInWithGooglePopup, SignInrWitEmalAndPassword } from '../../utils/firebase/firebase'
 import "./SignInForm.scss"
-import Button from '../button/button'
+import Button, {BUTTON_TYPE_CLASSES} from '../button/button'
 
 const defaultFormFields = {
    
@@ -62,7 +62,7 @@ const SignInForm = () => {
         <FormInput label="Password" required type="password" onChange={handleChange} name="password" value={password} />
         <div className='buttons-container' >
         <Button type='submit'>Sign In</Button>
-        <Button type="button" buttonType="google" onClick={SignInWithGoogle} >Google Sign In</Button>
+        <Button type="button" buttonType={BUTTON_TYPE_CLASSES.google} onClick={SignInWithGoogle} >Google Sign In</Button>
         </div>    
     </form>
     </div>
