@@ -8,8 +8,8 @@ const CartIcon = () => {
     setIsCartopen(!isCartOpen)
   }
   return (
-    <CartIconContainer>
-        <ShoppingIcon onClick={toogleIsCartOpen}></ShoppingIcon>
+    <CartIconContainer onClick={toogleIsCartOpen}>
+        <ShoppingIcon ></ShoppingIcon>
         <ItemCount className='item-count'>{cartCount}</ItemCount>
     </CartIconContainer>
   )
