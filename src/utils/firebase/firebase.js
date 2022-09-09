@@ -14,6 +14,8 @@ const firebaseConfig = {
   // Initialize Firebase
   const firebaseApp = initializeApp(firebaseConfig);
 
+  console.log(firebaseApp)
+
   const googleProvider = new GoogleAuthProvider();
   googleProvider.setCustomParameters({
     prompt: "select_account"
@@ -41,13 +43,7 @@ const firebaseConfig = {
     const collectionRef = collection(db, "categories")
     const q = query(collectionRef)
     const querrySnapshot = await getDocs(q)
-    const categoryMap = querrySnapshot.docs.reduce((acc, docSnapshot)=> {
-      const {title, items } = docSnapshot.data()
-      acc[title.toLowerCase()] =  items
-      return acc
-    }, {})
-
-    return categoryMap
+    return querrySnapshot.docs.map(docSnapshot => docSnapshot.data())
 
   }
 
